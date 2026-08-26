@@ -41,7 +41,7 @@ n_coefs <- ncol(X)
 model_data <- list(X =X,
                    y = y, 
                    N = N,
-                   n_coefs= n_coefs,
+                   n_coefs = n_coefs,
                    lambda = lambda,
                    lambda_spike = lambda_spike,
                    lambda_slab = lambda_slab,
@@ -56,7 +56,7 @@ model_data <- list(X =X,
 
 # RDHMC sampling 
 #t_start <- Sys.time()
-#fit <- rdhmc_sample(paste0("sns",model,".stan"), model_data, n_chains = 10, n_samples = 1000, warmup_sampler = 1000, warmup_init = 2000, max_treedepth = 13)
+#fit <- rdhmc_sample("Models/sns.stan", model_data, n_chains = 10, n_samples = 1000, warmup_sampler = 1000, warmup_init = 2000, max_treedepth = 13)
 #t_end <- Sys.time()
 fit <- readRDS("Experiments/Experiment 3/ex3_rdhmc_full_13.rds")
 
