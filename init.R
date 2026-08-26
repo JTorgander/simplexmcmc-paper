@@ -4,7 +4,7 @@
 # Run from the repository root with:
 #   Rscript init.R
 
-source("install_packages.R")
-source("download_experiments.R")
+source("Helpers/install_packages.R")
+source("Helpers/download_experiments.R")
 
 message("Repository initialization complete.")
