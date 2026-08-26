@@ -64,9 +64,9 @@ fit <- readRDS("Experiments/Experiment 3/ex3_rdhmc_full_13.rds")
 draws <- fit$samples_df
 
 # Reading samples externally produced by a Gibbs sampler implemented in Julia
-beta_julia <- read_csv("beta_julia.csv", col_names = FALSE)
-sigma_julia <- read_csv("sigma_julia.csv", col_names = FALSE)
-z_julia <- read_csv("z_julia.csv", col_names = FALSE)
+beta_julia <- read_csv("Experiments/Experiment 3/beta_julia.csv", col_names = FALSE)
+sigma_julia <- read_csv("Experiments/Experiment 3/sigma_julia.csv", col_names = FALSE)
+z_julia <- read_csv("Experiments/Experiment 3/z_julia.csv", col_names = FALSE)
 
 # Setting recorded run-time (s) for the Julia sampler
 t2 <- 3522.3500730991364
