@@ -156,6 +156,7 @@ rdhmc_proposal <- function(bs_model, hmc_data, init,  chain_init, z_prev, param_
   theta_prop <- lf_step$q
   p_prop <- lf_step$p
   theta_gq <- bs_model$param_constrain(theta_prop, include_tp = TRUE, include_gq = TRUE, rng=  init$rng)
+  z_trans <- theta_gq[init$z_idx]
   c_prop <- theta_gq[init$c_idx]
   U_prop <- -theta_gq[init$log_dens_idx]
   K_prop <- drop(0.5*t(p_prop)%*%(chain_init$inv_mass_matrix)%*%p_prop)
@@ -166,7 +167,7 @@ rdhmc_proposal <- function(bs_model, hmc_data, init,  chain_init, z_prev, param_
               K_prev = K_prev,
               H_prop = H_prop,
               theta_prop = theta_prop,
-              z_trans = theta_prop,
+              z_trans = z_trans,
               c_prop = c_prop))
 }
 

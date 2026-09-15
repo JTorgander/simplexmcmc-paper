@@ -141,7 +141,8 @@ simplex_sampler <- function(pi, method, proposal, prop_args, lambda, n_samples, 
     bs_model <- model_object$model$bs_model
     theta_0_unconstr <- chain_init$theta_0
     gq0 <- chain_init$gq0
-    c_prev <- gq0[init$c_idx]
+    z_trans_prev <- gq0[init$z_idx]
+    c_prev <- which.max(z_trans_prev)
     U_prev <- -gq0[init$log_dens_idx]
     z_prev <- theta_0_unconstr
     bs_model <- model_object$model$bs_model
@@ -171,7 +172,8 @@ simplex_sampler <- function(pi, method, proposal, prop_args, lambda, n_samples, 
           print(paste0("Energy error: Rejecting sample", err ))
           hmc_step <- list()
           hmc_step$U_prop <- U_prev
-          hmc_step$z_trans <- z_prev
+          hmc_step$theta_prop <- z_prev
+          hmc_step$z_trans <- z_trans_prev
           hmc_step$K_prev <- 0
           hmc_step$H_prop <- Inf
           return(hmc_step)}  
@@ -179,7 +181,7 @@ simplex_sampler <- function(pi, method, proposal, prop_args, lambda, n_samples, 
       H_prev <- as.numeric(U_prev + hmc_step$K_prev)
       U_prop <- hmc_step$U_prop
       z_trans <- hmc_step$z_trans
-      z_prop <- z_trans
+      z_prop <- hmc_step$theta_prop
       lp_prop <- 1
       target_ratio <- exp(-hmc_step$H_prop + H_prev) 
       if (is.nan(target_ratio)){
@@ -201,6 +203,7 @@ simplex_sampler <- function(pi, method, proposal, prop_args, lambda, n_samples, 
    
     if (runif(1) < accept_prob){
       z_prev <- z_prop
+      if (method == "RDHMC") z_trans_prev <- z_trans
       c_prev <- c_prop
       lp_prev <- lp_prop
       n_leap_prev <- n_leap_prop
