@@ -3,7 +3,7 @@ library(tidyverse)
 library(scales)
 library(gridExtra)
 library(loo)
-source("ex3_utils.R")
+source("Helpers/ex3_utils.R")
 source("rdhmc.R")
 
 # Loading diabetes data set

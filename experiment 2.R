@@ -1,5 +1,5 @@
 source("rdhmc.R")
-source("ex2_utils.R")
+source("Helpers/ex2_utils.R")
 library(tidyverse)
 library(MASS, exclude = 'select')
 library(LaplacesDemon)

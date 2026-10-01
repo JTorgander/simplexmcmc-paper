@@ -1,11 +1,11 @@
 library(tidyverse)
-source("ex1_utils.R")
-source("models.R")
+source("Helpers/ex1_utils.R")
+source("Helpers/models.R")
 
 
 # Loading predetermined target categorical distributions from disk
 # Creating the environment variables dist1, dist1b, dist2, dist2b, dist3, dist3b, dist4, dist4b
-load("Experiments/Experiment 1/dists.RData")
+load("dists.RData")
 SEED <- 123
 # Setting up experiments 
 models_rdhmc <- function(pi, K, alpha0){
