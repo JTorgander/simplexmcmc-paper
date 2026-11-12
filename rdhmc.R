@@ -24,7 +24,7 @@ initialize_model <- function(model_object, warm_up, n_chains, max_treedepth){
   
   # Extracting mass matrix, initial parameter values and step size
   n_unconstr_params <- length(model_object$model$bs_model$param_unc_names())
-  is_matrix = if_else(n_unconstr_params > 1, TRUE, FALSE)
+  is_matrix = ifelse(n_unconstr_params > 1, TRUE, FALSE)
   mass_matrix = fit$inv_metric(matrix = is_matrix)
   theta_0 <- fit$draws(format = "list")
   step_size <- fit$metadata()$step_size_adaptation
